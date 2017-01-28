@@ -110,7 +110,7 @@ public class Main {
 
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.err.println("[USAGE]: src-count.exe <path-to-file>");
+            System.err.println("[USAGE]: src-count.exe <path-to-file>"); // Wrap .jar into .exe, named "src-count.exe"
         } else {
             try {
                 List<String> lines = Files.readAllLines(Paths.get(args[0]));
@@ -118,7 +118,7 @@ public class Main {
                     if (LineIsNotEmpty(line)) { // Line is not empty
                         line = RemoveInStringQuotes(line);
                         line = CheckBlockCommentInLine(line);
-                        if (!isBlockOpening) {
+                        if (!isBlockOpening) { // This line does not include opening double quotes (for multiple lines block comment)
                             if ((CheckLineComment(line)) || (IsBlockCommentReplace())) { // Comment line = Check comment // and /**/
                                 AddCommentLine();
                                 line = RemoveLineComment(line);
